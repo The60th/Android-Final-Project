@@ -86,6 +86,7 @@ public class gameInstance {
                 _myGameField[_index] = tile;
                 Player returnValue = checkWinner(whoClicked);
 
+                //Have to update the display!
                 //This should call some sort of win display method rather then handle winning right here.
                 if(checkWinner(returnValue) !=null){
                     //Someone has won.
