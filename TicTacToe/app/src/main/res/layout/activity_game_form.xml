@@ -10,8 +10,85 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.github.the60th.tictactoe.gameForm">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="100dp"></LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:columnCount="3"
+        android:rowCount="10"
+        android:layout_height="375dp">
+
+        <Button
+            android:id="@+id/buttonTop1"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_marginLeft="25dp"
+
+            />
+        <Button
+            android:id="@+id/buttonTop2"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_marginLeft="25dp"
+
+            />
+        <Button
+            android:id="@+id/buttonTop3"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:layout_marginLeft="25dp"
+            />
+
+
+        <Button
+            android:id="@+id/buttonMiddle1"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_marginLeft="25dp"
+
+            />
+        <Button
+            android:id="@+id/buttonMiddle2"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:layout_marginLeft="25dp"
+
+            />
+        <Button
+            android:id="@+id/buttonMiddle3"
+            android:layout_column="2"
+            android:layout_row="2"
+            android:layout_marginLeft="25dp"
+
+            />
+
+        <Button
+            android:id="@+id/buttonBottom1"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:layout_marginLeft="25dp"
+
+            />
+        <Button
+            android:id="@+id/buttonBottom2"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:layout_marginLeft="25dp"
+
+            />
+        <Button
+            android:id="@+id/buttonBottom3"
+            android:layout_column="2"
+            android:layout_row="3"
+            android:layout_marginLeft="25dp"
+
+            />
+    </GridLayout>
 </RelativeLayout>
