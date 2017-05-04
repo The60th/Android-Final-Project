@@ -17,8 +17,9 @@ public class gameInstance {
     //  3 5 7
     //  4 9 2
     //sum of a colume is 15.
-    private boolean debugMode = true;
-    private String debugTag = "<:My Debug Data:>";
+    public boolean debugMode = true;
+
+    public static String debugTag = "<:My Debug Data:>";
     private int[] magicSquare = { 8, 1, 6,
                                   3, 5, 7,
                                   4, 9, 2
@@ -32,6 +33,24 @@ public class gameInstance {
     private Player _player;
     private AI _AI;
     private ImageButton[] _myButtons;
+
+    public String[] get_myGameField() {
+        return _myGameField;
+    }
+
+    public boolean[] get_myGameBoolean() {
+        return _myGameBoolean;
+    }
+
+    public void set_myGameBoolean(boolean[] _myGameBoolean) {
+        this._myGameBoolean = _myGameBoolean;
+    }
+
+    private boolean[] _myGameBoolean = {
+            true,true,true,
+            true,true,true,
+            true,true,true
+    };
     private String[] _myGameField = {
             _EmptyTile, _EmptyTile, _EmptyTile,
             _EmptyTile, _EmptyTile, _EmptyTile,
@@ -46,14 +65,19 @@ public class gameInstance {
     public AI get_AI() {
         return _AI;
     }
-
     public ImageButton[] get_myButtons() {
         return _myButtons;
     }
     public ImageButton get_myButtons(int index){
         return _myButtons[index];
     }
+    public boolean is_DebugMode() {
+        return debugMode;
+    }
 
+    public void set_DebugMode(boolean _DebugMode) {
+        this.debugMode = _DebugMode;
+    }
     //Class constructor
     public gameInstance(ImageButton[] myButtons, Player player, AI ai){
         int _size = 9;
@@ -90,6 +114,7 @@ public class gameInstance {
                 _index = i;
                 _myGameField[_index] = tile;
                 whoClicked.placeTile(_myButtons[_index]);
+                _myGameBoolean[_index] = false;
                 Player returnValue = checkWinner(whoClicked);
                 if(debugMode) Log.i(debugTag,"my game field: " + System.lineSeparator() +
                         _myGameField[0] + " " + _myGameField[1] + " " + _myGameField[2] + System.lineSeparator() +
@@ -103,9 +128,11 @@ public class gameInstance {
                 if(checkWinner(returnValue) !=null){
                     //Someone has won.
                     if(checkWinner(returnValue) instanceof AI){
+                        if(debugMode) Log.i(debugTag, "AI has won!");
                         AI winner = (AI) returnValue;
                     }
                     else{
+                        if(debugMode) Log.i(debugTag, "Player has won!");
                         Player winner = returnValue;
                     }
 
@@ -126,7 +153,12 @@ public class gameInstance {
         // 0 1 2
         // 3 4 5
         // 6 7 8
+        if(debugMode) Log.i(debugTag,"Called within checkWinner: my game field: " + System.lineSeparator() +
+                _myGameField[0] + " " + _myGameField[1] + " " + _myGameField[2] + System.lineSeparator() +
+                _myGameField[3] + " " + _myGameField[4] + " " + _myGameField[5] + System.lineSeparator() +
+                _myGameField[6] + " " + _myGameField[7] + " " + _myGameField[8] + " "
 
+        );
         String tile;
         Player returnType;
         if(player instanceof AI){
@@ -143,7 +175,7 @@ public class gameInstance {
           //  );
        // }
 
-
+        if(debugMode) Log.i(debugTag,"My tile data: " + tile);
         //Check vert
         if(_myGameField[0].equals(tile) && _myGameField[3].equals(tile) && _myGameField[6].equals(tile)){
             return returnType;
@@ -176,5 +208,6 @@ public class gameInstance {
         }
 
     }
-
+    public void playerWins(){}
+    public void aiWins(){}
 }

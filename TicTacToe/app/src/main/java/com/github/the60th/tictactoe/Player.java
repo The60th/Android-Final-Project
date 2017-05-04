@@ -28,4 +28,17 @@ public Player(String name, PieceType type,boolean myTurn){
         }
     }
 
+
+
+    public String get_Name() {
+        return _Name;
+    }
+
+    public boolean is_MyTurn() {
+        return _MyTurn;
+    }
+
+    public void set_MyTurn(boolean _MyTurn) {
+        this._MyTurn = _MyTurn;
+    }
 }
