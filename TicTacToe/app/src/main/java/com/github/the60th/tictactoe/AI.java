@@ -38,7 +38,7 @@ public class AI extends Player {
             if(tracker >= 100){
                 for(int i = 0; i < 9; i++){
                     if((gameInstance.get_myGameField()[i].equals("e"))){
-                        gameInstance.placeTile(gameInstance.get_myButtons(x),this);
+                        if(!(gameInstance.placeTile(gameInstance.get_myButtons(x),this)))return false;
                         return true;
                     }
                 }

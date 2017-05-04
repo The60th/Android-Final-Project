@@ -37,15 +37,13 @@ public class gameForm extends AppCompatActivity {
     }
 
     public void clickTopLeft(View v) {
-
         _Index = 0;
         if(!myGame.get_myGameBoolean()[_Index]) {
             createMessage("Invalid tile, already placed.", v);
             return;
         }
         if (checkTurn(player, v)) {
-
-            myGame.placeTile(myButtons[_Index], player);
+            if(!(myGame.placeTile(myButtons[_Index], player)))return;
             createMessage("Top left was clicked", v);
             ai.set_MyTurn(true);
             if(ai.playTurn(myGame)){
@@ -66,7 +64,7 @@ public class gameForm extends AppCompatActivity {
             return;
         }
         if (checkTurn(player, v)) {
-            myGame.placeTile(myButtons[_Index], player);
+            if(!myGame.placeTile(myButtons[_Index], player)) return;
             createMessage("Top mid was clicked", v);
             ai.set_MyTurn(true);
             if(ai.playTurn(myGame)){
@@ -85,7 +83,7 @@ public class gameForm extends AppCompatActivity {
             return;
         }
         if (checkTurn(player, v)) {
-            myGame.placeTile(myButtons[_Index], player);
+            if(!(myGame.placeTile(myButtons[_Index], player))) return;
             createMessage("Top right was clicked", v);
             ai.set_MyTurn(true);
             if(ai.playTurn(myGame)){
@@ -104,7 +102,7 @@ public class gameForm extends AppCompatActivity {
             return;
         }
         if (checkTurn(player, v)) {
-            myGame.placeTile(myButtons[_Index], player);
+            if(!(myGame.placeTile(myButtons[_Index], player)))return;
             createMessage("Mid left was clicked", v);
             ai.set_MyTurn(true);
             if(ai.playTurn(myGame)){
@@ -124,7 +122,7 @@ public class gameForm extends AppCompatActivity {
             return;
         }
         if (checkTurn(player, v)) {
-            myGame.placeTile(myButtons[_Index], player);
+           if(!( myGame.placeTile(myButtons[_Index], player))) return;
             createMessage("Mid mid was clicked", v);
             ai.set_MyTurn(true);
             if(ai.playTurn(myGame)){
@@ -143,7 +141,7 @@ public class gameForm extends AppCompatActivity {
             return;
         }
         if (checkTurn(player, v)) {
-            myGame.placeTile(myButtons[_Index], player);
+          if (!(  myGame.placeTile(myButtons[_Index], player))) return;
             createMessage("Mid right was clicked", v);
             ai.set_MyTurn(true);
             if(ai.playTurn(myGame)){
@@ -162,7 +160,7 @@ public class gameForm extends AppCompatActivity {
             return;
         }
         if (checkTurn(player, v)) {
-            myGame.placeTile(myButtons[_Index], player);
+           if (!( myGame.placeTile(myButtons[_Index], player)))return;
             createMessage("Bot left was clicked", v);
             ai.set_MyTurn(true);
             if(ai.playTurn(myGame)){
@@ -181,7 +179,7 @@ public class gameForm extends AppCompatActivity {
             return;
         }
         if (checkTurn(player, v)) {
-            myGame.placeTile(myButtons[_Index], player);
+            if(!(myGame.placeTile(myButtons[_Index], player))) return;
             createMessage("Bot mid was clicked", v);
             ai.set_MyTurn(true);
             if(ai.playTurn(myGame)){
@@ -200,7 +198,7 @@ public class gameForm extends AppCompatActivity {
             return;
         }
         if (checkTurn(player, v)) {
-            myGame.placeTile(myButtons[_Index], player);
+           if(!( myGame.placeTile(myButtons[_Index], player)))return;
             createMessage("Bot right was clicked", v);
             ai.set_MyTurn(true);
             if(ai.playTurn(myGame)){

@@ -21,6 +21,7 @@ public class gameInstance {
     //  3 5 7
     //  4 9 2
     //sum of a colume is 15.
+    public static final String EXTRA_MESSAGE = "myDisplayData";
     public boolean debugMode = true;
 
     public static String debugTag = "<:My Debug Data:>";
@@ -97,7 +98,7 @@ public class gameInstance {
         _Context = context;
     }
 
-    public void placeTile(ImageButton clicked,Player whoClicked){
+    public boolean placeTile(ImageButton clicked,Player whoClicked){
         String tile;
         if(whoClicked instanceof AI){
             //Ai click methods.
@@ -137,11 +138,13 @@ public class gameInstance {
                         if(debugMode) Log.i(debugTag, "AI has won!");
                         AI winner = (AI) returnValue;
                         aiWins();
+                        return false;
                     }
                     else{
                         if(debugMode) Log.i(debugTag, "Player has won!");
                         Player winner = returnValue;
                         playerWins();
+                        return false;
                     }
 
                 }
@@ -150,6 +153,7 @@ public class gameInstance {
                 break;
             }
         }
+        return true;
     }
 
     /**
@@ -218,12 +222,15 @@ public class gameInstance {
     }
     private void playerWins(){
         Intent myIntent = new Intent(_Context,ActivityWinForm.class);
+        String data = "Hello the player has won!";
+        myIntent.putExtra(EXTRA_MESSAGE, data);
         _Context.startActivity(myIntent);
 
     }
     private void aiWins(){
         Intent myIntent = new Intent(_Context,ActivityWinForm.class);
+        String data = "Hello the AI has won!";
+        myIntent.putExtra(EXTRA_MESSAGE, data);
         _Context.startActivity(myIntent);
-
     }
 }

@@ -13,4 +13,21 @@
     tools:context="com.github.the60th.tictactoe.ActivityWinForm"
     tools:showIn="@layout/activity_win_form">
 
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/demoDisplay" />
+
+    <Button
+        android:text="Restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/demoDisplay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:id="@+id/button"
+        android:onClick="onClick" />
 </RelativeLayout>
