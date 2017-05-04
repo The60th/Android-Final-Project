@@ -8,4 +8,9 @@ package com.github.the60th.tictactoe;
  */
 
 public class AI extends Player {
+
+    public AI(String name, PieceType type, boolean myTurn) {
+        super(name, type, myTurn);
+    }
+
 }

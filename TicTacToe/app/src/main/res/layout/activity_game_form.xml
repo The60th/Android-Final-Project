@@ -37,23 +37,13 @@
         android:layout_alignParentStart="true">
 
         <ImageButton
-            android:id="@+id/buttonTop2"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:layout_marginLeft="25dp"
-            android:backgroundTint="@color/colorAccent"
-            android:layout_height="88dp"
-            android:layout_width="88dp"
-            app:srcCompat="@drawable/largeoimage"
-            android:scaleType="fitCenter" />
-        <ImageButton
             android:id="@+id/buttonTop3"
             android:layout_column="2"
             android:layout_row="1"
             android:layout_marginLeft="25dp"
             android:layout_width="88dp"
             android:backgroundTint="@color/colorAccent"
-
+            android:onClick="clickTopRight"
             android:layout_height="88dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/largeoimage" />
@@ -66,7 +56,7 @@
             android:layout_marginLeft="25dp"
             android:layout_width="88dp"
             android:backgroundTint="@color/colorAccent"
-
+            android:onClick="clickMidLeft"
             android:layout_height="88dp"
 
             android:scaleType="fitCenter"
@@ -81,7 +71,7 @@
             android:backgroundTint="@color/colorAccent"
 
             android:layout_height="88dp"
-
+            android:onClick="clickMidRight"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/largeximage" />
 
@@ -91,7 +81,7 @@
             android:layout_row="3"
             android:layout_marginLeft="25dp"
             android:backgroundTint="@color/colorAccent"
-
+            android:onClick="clickBotLeft"
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:scaleType="fitCenter"
@@ -103,7 +93,7 @@
             android:layout_marginLeft="25dp"
             android:layout_width="88dp"
             android:backgroundTint="@color/colorAccent"
-
+            android:onClick="clickBotMid"
             android:layout_height="88dp"
 
             android:scaleType="fitCenter"
@@ -114,7 +104,7 @@
             android:layout_row="3"
             android:layout_marginLeft="25dp"
             android:backgroundTint="@color/colorAccent"
-
+            android:onClick="clickBotRight"
             android:layout_width="88dp"
             android:layout_height="88dp"
 
@@ -130,7 +120,8 @@
             android:backgroundTint="@color/colorAccent"
             android:layout_width="88dp"
             android:layout_height="88dp"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:onClick="clickTopLeft" />
 
         <ImageButton
             android:id="@+id/buttonMiddle2"
@@ -139,10 +130,22 @@
             android:layout_marginLeft="25dp"
             android:layout_width="88dp"
             android:backgroundTint="@color/colorAccent"
-
+            android:onClick="clickMidMid"
             android:layout_height="88dp"
 
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/largeoimage" />
+
+        <ImageButton
+            android:id="@+id/buttonTop2"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_marginLeft="25dp"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_height="88dp"
+            android:layout_width="88dp"
+            android:onClick="clickTopMid"
+            app:srcCompat="@drawable/largeoimage"
+            android:scaleType="fitCenter" />
     </GridLayout>
 </RelativeLayout>

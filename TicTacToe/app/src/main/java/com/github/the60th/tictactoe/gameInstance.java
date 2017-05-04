@@ -1,7 +1,9 @@
 package com.github.the60th.tictactoe;
 
 import android.animation.ObjectAnimator;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * Created by Justin on 5/2/2017.
@@ -15,6 +17,8 @@ public class gameInstance {
     //  3 5 7
     //  4 9 2
     //sum of a colume is 15.
+    private boolean debugMode = true;
+    private String debugTag = "<:My Debug Data:>";
     private int[] magicSquare = { 8, 1, 6,
                                   3, 5, 7,
                                   4, 9, 2
@@ -27,7 +31,7 @@ public class gameInstance {
     private String _AiWinCondition = "aaa";
     private Player _player;
     private AI _AI;
-    private Button[] _myButtons;
+    private ImageButton[] _myButtons;
     private String[] _myGameField = {
             _EmptyTile, _EmptyTile, _EmptyTile,
             _EmptyTile, _EmptyTile, _EmptyTile,
@@ -43,15 +47,15 @@ public class gameInstance {
         return _AI;
     }
 
-    public Button[] get_myButtons() {
+    public ImageButton[] get_myButtons() {
         return _myButtons;
     }
-    public Button get_myButtons(int index){
+    public ImageButton get_myButtons(int index){
         return _myButtons[index];
     }
 
     //Class constructor
-    public gameInstance(Button[] myButtons, Player player, AI ai){
+    public gameInstance(ImageButton[] myButtons, Player player, AI ai){
         int _size = 9;
         if(myButtons.length != _size){
             throw new IllegalArgumentException(
@@ -63,28 +67,36 @@ public class gameInstance {
         _AI = ai;
     }
 
-    public void placeTile(Button clicked,Player whoClicked){
+    public void placeTile(ImageButton clicked,Player whoClicked){
         String tile;
         if(whoClicked instanceof AI){
             //Ai click methods.
             tile = _AITile;
         }
-        else if(whoClicked != null){
+        else {
             //Player click method.
             tile = _PlayerTile;
         }
-        else{
-            throw new NullPointerException(
-                    "Instance of whoClicked is null."
-            );
-        }
+        //else{
+        //    throw new NullPointerException(
+          //          "Instance of whoClicked is null."
+          //  );
+       // }
 
         int _index;
         for(int i = 0; i < _myButtons.length; i++){
-            if(_myButtons[i] == clicked){
+            if(_myButtons[i].getId() == clicked.getId()){
+                if(debugMode)Log.i(debugTag,"my index = " +i);
                 _index = i;
                 _myGameField[_index] = tile;
+                whoClicked.placeTile(_myButtons[_index]);
                 Player returnValue = checkWinner(whoClicked);
+                if(debugMode) Log.i(debugTag,"my game field: " + System.lineSeparator() +
+                        _myGameField[0] + " " + _myGameField[1] + " " + _myGameField[2] + System.lineSeparator() +
+                        _myGameField[3] + " " + _myGameField[4] + " " + _myGameField[5] + System.lineSeparator() +
+                        _myGameField[6] + " " + _myGameField[7] + " " + _myGameField[8] + " "
+
+                );
 
                 //Have to update the display!
                 //This should call some sort of win display method rather then handle winning right here.
@@ -121,15 +133,15 @@ public class gameInstance {
             tile = _AITile;
             returnType = _AI;
         }
-        else if(player != null){
+        else{
             tile = _PlayerTile;
             returnType = _player;
         }
-        else{
-            throw new NullPointerException(
-                    "Instance of player is null."
-            );
-        }
+        //else{
+          //  throw new NullPointerException(
+          //          "Instance of player is null."
+          //  );
+       // }
 
 
         //Check vert
