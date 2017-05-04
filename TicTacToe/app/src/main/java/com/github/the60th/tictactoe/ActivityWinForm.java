@@ -32,7 +32,7 @@ public class ActivityWinForm extends AppCompatActivity {
             }
         });
 
-
+//h
         Intent intent = getIntent();
         String message = intent.getStringExtra(EXTRA_MESSAGE);
         TextView demoDisplay = (TextView) findViewById(R.id.demoDisplay);
