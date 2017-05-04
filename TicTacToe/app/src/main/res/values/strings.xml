@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">"Tic Tac Toe "</string>
+    <string name="title_activity_win_form">ActivityWinForm</string>
+    <string name="title_activity_demo">Demo</string>
 </resources>

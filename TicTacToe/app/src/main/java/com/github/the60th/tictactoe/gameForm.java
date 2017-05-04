@@ -1,8 +1,10 @@
 package com.github.the60th.tictactoe;
 
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -31,10 +33,11 @@ public class gameForm extends AppCompatActivity {
         myButtons[7] = (ImageButton) findViewById(R.id.buttonBottom2);
         myButtons[8] = (ImageButton) findViewById(R.id.buttonBottom3);
 
-        myGame = new gameInstance(myButtons, player, ai);
+        myGame = new gameInstance(myButtons, player, ai,this);
     }
 
     public void clickTopLeft(View v) {
+
         _Index = 0;
         if(!myGame.get_myGameBoolean()[_Index]) {
             createMessage("Invalid tile, already placed.", v);
@@ -223,4 +226,5 @@ public class gameForm extends AppCompatActivity {
             return false;
         }
     }
+
 }

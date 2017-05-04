@@ -1,9 +1,13 @@
 package com.github.the60th.tictactoe;
 
 import android.animation.ObjectAnimator;
+import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
+
 
 /**
  * Created by Justin on 5/2/2017.
@@ -33,6 +37,7 @@ public class gameInstance {
     private Player _player;
     private AI _AI;
     private ImageButton[] _myButtons;
+    private Context _Context;
 
     public String[] get_myGameField() {
         return _myGameField;
@@ -79,7 +84,7 @@ public class gameInstance {
         this.debugMode = _DebugMode;
     }
     //Class constructor
-    public gameInstance(ImageButton[] myButtons, Player player, AI ai){
+    public gameInstance(ImageButton[] myButtons, Player player, AI ai,Context context){
         int _size = 9;
         if(myButtons.length != _size){
             throw new IllegalArgumentException(
@@ -89,6 +94,7 @@ public class gameInstance {
         _myButtons = myButtons;
         _player = player;
         _AI = ai;
+        _Context = context;
     }
 
     public void placeTile(ImageButton clicked,Player whoClicked){
@@ -130,10 +136,12 @@ public class gameInstance {
                     if(checkWinner(returnValue) instanceof AI){
                         if(debugMode) Log.i(debugTag, "AI has won!");
                         AI winner = (AI) returnValue;
+                        aiWins();
                     }
                     else{
                         if(debugMode) Log.i(debugTag, "Player has won!");
                         Player winner = returnValue;
+                        playerWins();
                     }
 
                 }
@@ -208,6 +216,14 @@ public class gameInstance {
         }
 
     }
-    public void playerWins(){}
-    public void aiWins(){}
+    private void playerWins(){
+        Intent myIntent = new Intent(_Context,ActivityWinForm.class);
+        _Context.startActivity(myIntent);
+
+    }
+    private void aiWins(){
+        Intent myIntent = new Intent(_Context,ActivityWinForm.class);
+        _Context.startActivity(myIntent);
+
+    }
 }

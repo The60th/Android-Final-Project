@@ -28,8 +28,22 @@ public class AI extends Player {
         );
             Random random = new Random();
             int x = random.nextInt(9);
-            while(!(gameInstance.get_myGameField()[x].equals("e"))){
+            //This loop never ends if a tile can not be placed!
+            //MUST have a force exit condition!
+            int tracker = 0;
+            while(!(gameInstance.get_myGameField()[x].equals("e")) && tracker < 100){
                 x = random.nextInt(9);
+                tracker++;
+            }
+            if(tracker >= 100){
+                for(int i = 0; i < 9; i++){
+                    if((gameInstance.get_myGameField()[i].equals("e"))){
+                        gameInstance.placeTile(gameInstance.get_myButtons(x),this);
+                        return true;
+                    }
+                }
+                Log.i(debugTag,"Invalid call on AI board is full, catching errors and returned.");
+                return false;
             }
                 gameInstance.placeTile(gameInstance.get_myButtons(x),this);
         }
