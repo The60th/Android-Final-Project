@@ -9,6 +9,9 @@ import android.widget.ImageButton;
 
 public class Player {
     private String _Name;
+
+
+
     private PieceType _PieceType;
     private boolean _MyTurn;
 public Player(String name, PieceType type,boolean myTurn){
@@ -40,5 +43,8 @@ public Player(String name, PieceType type,boolean myTurn){
 
     public void set_MyTurn(boolean _MyTurn) {
         this._MyTurn = _MyTurn;
+    }
+    public PieceType get_PieceType() {
+        return _PieceType;
     }
 }

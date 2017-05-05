@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class gameForm extends AppCompatActivity {
     private ImageButton[] myButtons = new ImageButton[9];
     private gameInstance myGame;
     private Player player = new Player("hi", PieceType.X, true);
-    private AI ai = new AI("hi", PieceType.O, false);
+    private AI ai = new AI("hi", PieceType.O, false, Difficulty.Medium);
     private int _Index;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,83 +36,90 @@ public class gameForm extends AppCompatActivity {
         myButtons[7] = (ImageButton) findViewById(R.id.buttonBottom2);
         myButtons[8] = (ImageButton) findViewById(R.id.buttonBottom3);
 
-        myGame = new gameInstance(myButtons, player, ai,this);
+        myGame = new gameInstance(myButtons, player, ai, this);
+        if (whoGoesFirst() == ai) {
+            player.set_MyTurn(false);
+            ai.set_MyTurn(true);
+            if (ai.playTurn(myGame)) {
+                player.set_MyTurn(true);
+            } else {
+
+                createMessage("Invalid AI turn call");
+            }
+        } else {
+        }
     }
 
     public void clickTopLeft(View v) {
         _Index = 0;
-        if(!myGame.get_myGameBoolean()[_Index]) {
-            createMessage("Invalid tile, already placed.", v);
+        if (!myGame.get_myGameBoolean()[_Index]) {
+            createMessage("Invalid tile, already placed.");
             return;
         }
         if (checkTurn(player, v)) {
-            if(!(myGame.placeTile(myButtons[_Index], player)))return;
-            createMessage("Top left was clicked", v);
+            if (!(myGame.placeTile(myButtons[_Index], player))) return;
+            createMessage("Top left was clicked");
             ai.set_MyTurn(true);
-            if(ai.playTurn(myGame)){
+            if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
+            } else {
+                createMessage("Invalid AI turn call");
             }
-            else{
-                createMessage("Invalid AI turn call",v);
-            }
-            }
-
         }
+
+    }
 
 
     public void clickTopMid(View v) {
         _Index = 1;
-        if(!myGame.get_myGameBoolean()[_Index]){
-            createMessage("Invalid tile, already placed.",v);
+        if (!myGame.get_myGameBoolean()[_Index]) {
+            createMessage("Invalid tile, already placed.");
             return;
         }
         if (checkTurn(player, v)) {
-            if(!myGame.placeTile(myButtons[_Index], player)) return;
-            createMessage("Top mid was clicked", v);
+            if (!myGame.placeTile(myButtons[_Index], player)) return;
+            createMessage("Top mid was clicked");
             ai.set_MyTurn(true);
-            if(ai.playTurn(myGame)){
+            if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
-            }
-            else{
-                createMessage("Invalid AI turn call",v);
+            } else {
+                createMessage("Invalid AI turn call");
             }
         }
     }
 
     public void clickTopRight(View v) {
         _Index = 2;
-        if(!myGame.get_myGameBoolean()[_Index]){
-            createMessage("Invalid tile, already placed.",v);
+        if (!myGame.get_myGameBoolean()[_Index]) {
+            createMessage("Invalid tile, already placed.");
             return;
         }
         if (checkTurn(player, v)) {
-            if(!(myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Top right was clicked", v);
+            if (!(myGame.placeTile(myButtons[_Index], player))) return;
+            createMessage("Top right was clicked");
             ai.set_MyTurn(true);
-            if(ai.playTurn(myGame)){
+            if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
-            }
-            else{
-                createMessage("Invalid AI turn call",v);
+            } else {
+                createMessage("Invalid AI turn call");
             }
         }
     }
 
     public void clickMidLeft(View v) {
         _Index = 3;
-        if(!myGame.get_myGameBoolean()[_Index]){
-            createMessage("Invalid tile, already placed.",v);
+        if (!myGame.get_myGameBoolean()[_Index]) {
+            createMessage("Invalid tile, already placed.");
             return;
         }
         if (checkTurn(player, v)) {
-            if(!(myGame.placeTile(myButtons[_Index], player)))return;
-            createMessage("Mid left was clicked", v);
+            if (!(myGame.placeTile(myButtons[_Index], player))) return;
+            createMessage("Mid left was clicked");
             ai.set_MyTurn(true);
-            if(ai.playTurn(myGame)){
+            if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
-            }
-            else{
-                createMessage("Invalid AI turn call",v);
+            } else {
+                createMessage("Invalid AI turn call");
             }
 
         }
@@ -117,101 +127,96 @@ public class gameForm extends AppCompatActivity {
 
     public void clickMidMid(View v) {
         _Index = 4;
-        if(!myGame.get_myGameBoolean()[_Index]){
-            createMessage("Invalid tile, already placed.",v);
+        if (!myGame.get_myGameBoolean()[_Index]) {
+            createMessage("Invalid tile, already placed.");
             return;
         }
         if (checkTurn(player, v)) {
-           if(!( myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Mid mid was clicked", v);
+            if (!(myGame.placeTile(myButtons[_Index], player))) return;
+            createMessage("Mid mid was clicked");
             ai.set_MyTurn(true);
-            if(ai.playTurn(myGame)){
+            if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
-            }
-            else{
-                createMessage("Invalid AI turn call",v);
+            } else {
+                createMessage("Invalid AI turn call");
             }
         }
     }
 
     public void clickMidRight(View v) {
         _Index = 5;
-        if(!myGame.get_myGameBoolean()[_Index]){
-            createMessage("Invalid tile, already placed.",v);
+        if (!myGame.get_myGameBoolean()[_Index]) {
+            createMessage("Invalid tile, already placed.");
             return;
         }
         if (checkTurn(player, v)) {
-          if (!(  myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Mid right was clicked", v);
+            if (!(myGame.placeTile(myButtons[_Index], player))) return;
+            createMessage("Mid right was clicked");
             ai.set_MyTurn(true);
-            if(ai.playTurn(myGame)){
+            if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
-            }
-            else{
-                createMessage("Invalid AI turn call",v);
+            } else {
+                createMessage("Invalid AI turn call");
             }
         }
     }
 
     public void clickBotLeft(View v) {
         _Index = 6;
-        if(!myGame.get_myGameBoolean()[_Index]){
-            createMessage("Invalid tile, already placed.",v);
+        if (!myGame.get_myGameBoolean()[_Index]) {
+            createMessage("Invalid tile, already placed.");
             return;
         }
         if (checkTurn(player, v)) {
-           if (!( myGame.placeTile(myButtons[_Index], player)))return;
-            createMessage("Bot left was clicked", v);
+            if (!(myGame.placeTile(myButtons[_Index], player))) return;
+            createMessage("Bot left was clicked");
             ai.set_MyTurn(true);
-            if(ai.playTurn(myGame)){
+            if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
-            }
-            else{
-                createMessage("Invalid AI turn call",v);
+            } else {
+                createMessage("Invalid AI turn call");
             }
         }
     }
 
     public void clickBotMid(View v) {
         _Index = 7;
-        if(!myGame.get_myGameBoolean()[_Index]){
-            createMessage("Invalid tile, already placed.",v);
+        if (!myGame.get_myGameBoolean()[_Index]) {
+            createMessage("Invalid tile, already placed.");
             return;
         }
         if (checkTurn(player, v)) {
-            if(!(myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Bot mid was clicked", v);
+            if (!(myGame.placeTile(myButtons[_Index], player))) return;
+            createMessage("Bot mid was clicked");
             ai.set_MyTurn(true);
-            if(ai.playTurn(myGame)){
+            if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
-            }
-            else{
-                createMessage("Invalid AI turn call",v);
+            } else {
+                createMessage("Invalid AI turn call");
             }
         }
     }
 
     public void clickBotRight(View v) {
         _Index = 8;
-        if(!myGame.get_myGameBoolean()[_Index]){
-            createMessage("Invalid tile, already placed.",v);
+        if (!myGame.get_myGameBoolean()[_Index]) {
+            createMessage("Invalid tile, already placed.");
             return;
         }
         if (checkTurn(player, v)) {
-           if(!( myGame.placeTile(myButtons[_Index], player)))return;
-            createMessage("Bot right was clicked", v);
+            if (!(myGame.placeTile(myButtons[_Index], player))) return;
+            createMessage("Bot right was clicked");
             ai.set_MyTurn(true);
-            if(ai.playTurn(myGame)){
+            if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
-            }
-            else{
-                createMessage("Invalid AI turn call",v);
+            } else {
+                createMessage("Invalid AI turn call");
             }
         }
     }
 
 
-    private void createMessage(String message, View v) {
+    private void createMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
@@ -220,8 +225,31 @@ public class gameForm extends AppCompatActivity {
             player.set_MyTurn(false);
             return true;
         } else {
-            createMessage("It is currently not the players turn", v);
+            createMessage("It is currently not the players turn");
             return false;
+        }
+    }
+
+    private Player whoGoesFirst() {
+        Random rand = new Random();
+        int x = rand.nextInt(10) + 1;
+        Log.i(gameInstance.debugTag, "Checking who goes first, random number is = " + x +
+                " and difficulty is " + ai.get_difficulty().toString() + " ");
+        switch (ai.get_difficulty()) {
+            case Easy:
+                if (x >= 4) return player;
+                else return ai;
+            case Medium:
+                if (x > 5) return player;
+                else return ai;
+            case Hard:
+                if (x > 5) return player;
+                else return ai;
+            case Super_Hard:
+                if (x > 7) return player;
+                else return ai;
+            default:
+                return null;
         }
     }
 

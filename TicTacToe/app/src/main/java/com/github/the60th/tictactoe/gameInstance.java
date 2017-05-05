@@ -25,14 +25,24 @@ public class gameInstance {
     public boolean debugMode = true;
 
     public static String debugTag = "<:My Debug Data:>";
-    private int[] magicSquare = { 8, 1, 6,
-                                  3, 5, 7,
-                                  4, 9, 2
-                                };
+    private int[] magicSquare = {8, 1, 6,
+            3, 5, 7,
+            4, 9, 2
+    };
 
-    private String _PlayerTile = "p";
-    private String _AITile = "a";
-    private String _EmptyTile = "e";
+    public static String get_PlayerTile() {
+        return _PlayerTile;
+    }
+
+    public static String get_AITile() {
+        return _AITile;
+    }
+    public static String get_EmptyTile() {
+        return _EmptyTile;
+    }
+    private static String _PlayerTile = "p";
+    private static String _AITile = "a";
+    private static String _EmptyTile = "e";
     private String _PlayerWinCondition = "ppp";
     private String _AiWinCondition = "aaa";
     private Player _player;
@@ -53,15 +63,15 @@ public class gameInstance {
     }
 
     private boolean[] _myGameBoolean = {
-            true,true,true,
-            true,true,true,
-            true,true,true
+            true, true, true,
+            true, true, true,
+            true, true, true
     };
     private String[] _myGameField = {
             _EmptyTile, _EmptyTile, _EmptyTile,
             _EmptyTile, _EmptyTile, _EmptyTile,
             _EmptyTile, _EmptyTile, _EmptyTile
-                                 };
+    };
 
     //Class getters
     public Player get_player() {
@@ -71,12 +81,15 @@ public class gameInstance {
     public AI get_AI() {
         return _AI;
     }
+
     public ImageButton[] get_myButtons() {
         return _myButtons;
     }
-    public ImageButton get_myButtons(int index){
+
+    public ImageButton get_myButtons(int index) {
         return _myButtons[index];
     }
+
     public boolean is_DebugMode() {
         return debugMode;
     }
@@ -84,10 +97,11 @@ public class gameInstance {
     public void set_DebugMode(boolean _DebugMode) {
         this.debugMode = _DebugMode;
     }
+
     //Class constructor
-    public gameInstance(ImageButton[] myButtons, Player player, AI ai,Context context){
+    public gameInstance(ImageButton[] myButtons, Player player, AI ai, Context context) {
         int _size = 9;
-        if(myButtons.length != _size){
+        if (myButtons.length != _size) {
             throw new IllegalArgumentException(
                     "You must create a game instance with an array of nine buttons."
             );
@@ -98,32 +112,30 @@ public class gameInstance {
         _Context = context;
     }
 
-    public boolean placeTile(ImageButton clicked,Player whoClicked){
+    public boolean placeTile(ImageButton clicked, Player whoClicked) {
         String tile;
-        if(whoClicked instanceof AI){
+        if (whoClicked instanceof AI) {
             //Ai click methods.
             tile = _AITile;
-        }
-        else {
+        } else {
             //Player click method.
             tile = _PlayerTile;
         }
         //else{
         //    throw new NullPointerException(
-          //          "Instance of whoClicked is null."
-          //  );
-       // }
+        //          "Instance of whoClicked is null."
+        //  );
+        // }
 
         int _index;
-        for(int i = 0; i < _myButtons.length; i++){
-            if(_myButtons[i].getId() == clicked.getId()){
-                if(debugMode)Log.i(debugTag,"my index = " +i);
+        for (int i = 0; i < _myButtons.length; i++) {
+            if (_myButtons[i].getId() == clicked.getId()) {
+                if (debugMode) Log.i(debugTag, "my index = " + i);
                 _index = i;
                 _myGameField[_index] = tile;
                 whoClicked.placeTile(_myButtons[_index]);
                 _myGameBoolean[_index] = false;
-                Player returnValue = checkWinner(whoClicked);
-                if(debugMode) Log.i(debugTag,"my game field: " + System.lineSeparator() +
+                if (debugMode) Log.i(debugTag, "my game field: " + System.lineSeparator() +
                         _myGameField[0] + " " + _myGameField[1] + " " + _myGameField[2] + System.lineSeparator() +
                         _myGameField[3] + " " + _myGameField[4] + " " + _myGameField[5] + System.lineSeparator() +
                         _myGameField[6] + " " + _myGameField[7] + " " + _myGameField[8] + " "
@@ -132,21 +144,25 @@ public class gameInstance {
 
                 //Have to update the display!
                 //This should call some sort of win display method rather then handle winning right here.
-                if(checkWinner(returnValue) !=null){
+                whoWins whoWon = checkWinner(whoClicked);
+                if (whoWon != null) {
                     //Someone has won.
-                    if(checkWinner(returnValue) instanceof AI){
-                        if(debugMode) Log.i(debugTag, "AI has won!");
-                        AI winner = (AI) returnValue;
+                    if (whoWon == whoWins.AI) {
+                        if (debugMode) Log.i(debugTag, "AI has won!");
                         aiWins();
                         return false;
-                    }
-                    else{
-                        if(debugMode) Log.i(debugTag, "Player has won!");
-                        Player winner = returnValue;
+                    } else if (whoWon == whoWins.Player) {
+                        if (debugMode) Log.i(debugTag, "Player has won!");
                         playerWins();
+                        return false;
+                    } else {
+                        if (debugMode) Log.i(debugTag, "The game has come to a draw");
+                        draw();
                         return false;
                     }
 
+                } else {
+                    //Check winner was null so error or draw.
                 }
                 //^^
 
@@ -156,81 +172,100 @@ public class gameInstance {
         return true;
     }
 
+    private enum whoWins {Player, AI, Draw}
+
     /**
      * Warning this method can return null objects.
      * All calls should be null checked.
      */
-    private Player checkWinner(Player player){
+    private whoWins checkWinner(Player player) {
         //What conditions win?
         // 0 1 2
         // 3 4 5
         // 6 7 8
-        if(debugMode) Log.i(debugTag,"Called within checkWinner: my game field: " + System.lineSeparator() +
-                _myGameField[0] + " " + _myGameField[1] + " " + _myGameField[2] + System.lineSeparator() +
-                _myGameField[3] + " " + _myGameField[4] + " " + _myGameField[5] + System.lineSeparator() +
-                _myGameField[6] + " " + _myGameField[7] + " " + _myGameField[8] + " "
+        if (debugMode)
+            Log.i(debugTag, "Called within checkWinner: my game field: " + System.lineSeparator() +
+                    _myGameField[0] + " " + _myGameField[1] + " " + _myGameField[2] + System.lineSeparator() +
+                    _myGameField[3] + " " + _myGameField[4] + " " + _myGameField[5] + System.lineSeparator() +
+                    _myGameField[6] + " " + _myGameField[7] + " " + _myGameField[8] + " "
 
-        );
+            );
         String tile;
-        Player returnType;
-        if(player instanceof AI){
+        whoWins returnType;
+        if (player instanceof AI) {
             tile = _AITile;
-            returnType = _AI;
-        }
-        else{
+            returnType = whoWins.AI;
+        } else {
             tile = _PlayerTile;
-            returnType = _player;
+            returnType = whoWins.Player;
         }
         //else{
-          //  throw new NullPointerException(
-          //          "Instance of player is null."
-          //  );
-       // }
+        //  throw new NullPointerException(
+        //          "Instance of player is null."
+        //  );
+        // }
 
-        if(debugMode) Log.i(debugTag,"My tile data: " + tile);
+        if (debugMode) Log.i(debugTag, "My tile data: " + tile);
         //Check vert
-        if(_myGameField[0].equals(tile) && _myGameField[3].equals(tile) && _myGameField[6].equals(tile)){
+        if (_myGameField[0].equals(tile) && _myGameField[3].equals(tile) && _myGameField[6].equals(tile)) {
             return returnType;
-        }
-        else if(_myGameField[1].equals(tile) && _myGameField[4].equals(tile) && _myGameField[7].equals(tile)){
+        } else if (_myGameField[1].equals(tile) && _myGameField[4].equals(tile) && _myGameField[7].equals(tile)) {
             return returnType;
-        }
-        else if(_myGameField[2].equals(tile) && _myGameField[5].equals(tile) && _myGameField[8].equals(tile)){
+        } else if (_myGameField[2].equals(tile) && _myGameField[5].equals(tile) && _myGameField[8].equals(tile)) {
             return returnType;
         }
         //Check horz
-        else if(_myGameField[0].equals(tile) && _myGameField[1].equals(tile) && _myGameField[2].equals(tile)){
+        else if (_myGameField[0].equals(tile) && _myGameField[1].equals(tile) && _myGameField[2].equals(tile)) {
             return returnType;
-        }
-        else if(_myGameField[3].equals(tile) && _myGameField[4].equals(tile) && _myGameField[5].equals(tile)){
+        } else if (_myGameField[3].equals(tile) && _myGameField[4].equals(tile) && _myGameField[5].equals(tile)) {
             return returnType;
-        }
-        else if(_myGameField[6].equals(tile) && _myGameField[7].equals(tile) && _myGameField[8].equals(tile)){
+        } else if (_myGameField[6].equals(tile) && _myGameField[7].equals(tile) && _myGameField[8].equals(tile)) {
             return returnType;
         }
         //Check dia
-        else if(_myGameField[0].equals(tile) && _myGameField[4].equals(tile) && _myGameField[8].equals(tile)){
+        else if (_myGameField[0].equals(tile) && _myGameField[4].equals(tile) && _myGameField[8].equals(tile)) {
+            return returnType;
+        } else if (_myGameField[2].equals(tile) && _myGameField[4].equals(tile) && _myGameField[6].equals(tile)) {
             return returnType;
         }
-        else if(_myGameField[2].equals(tile) && _myGameField[5].equals(tile) && _myGameField[6].equals(tile)){
-            return returnType;
-        }
-        else{
+        //draw
+        else if (!(_myGameField[0].equals(_EmptyTile)) && !(_myGameField[1].equals(_EmptyTile)) && !(_myGameField[2].equals(_EmptyTile)) &&
+                !(_myGameField[3].equals(_EmptyTile)) && !(_myGameField[4].equals(_EmptyTile)) && !(_myGameField[5].equals(_EmptyTile)) &&
+                !(_myGameField[6].equals(_EmptyTile)) && !(_myGameField[7].equals(_EmptyTile)) && !(_myGameField[8].equals(_EmptyTile))) {
+            return whoWins.Draw;
+        } else {
             return null;
         }
 
     }
-    private void playerWins(){
-        Intent myIntent = new Intent(_Context,ActivityWinForm.class);
-        String data = "Hello the player has won!";
+
+    private void playerWins() {
+        Intent myIntent = new Intent(_Context, ActivityWinForm.class);
+        String data = "The player has won!";
         myIntent.putExtra(EXTRA_MESSAGE, data);
         _Context.startActivity(myIntent);
 
     }
-    private void aiWins(){
-        Intent myIntent = new Intent(_Context,ActivityWinForm.class);
-        String data = "Hello the AI has won!";
+
+    private void aiWins() {
+        Intent myIntent = new Intent(_Context, ActivityWinForm.class);
+        String data = "The AI has won!";
         myIntent.putExtra(EXTRA_MESSAGE, data);
         _Context.startActivity(myIntent);
     }
+
+    private void draw() {
+        Intent myIntent = new Intent(_Context, ActivityWinForm.class);
+        String data = "The game was a draw.";
+        myIntent.putExtra(EXTRA_MESSAGE, data);
+        _Context.startActivity(myIntent);
+    }
+
+    public boolean isFirstTurn() {
+        for (int i = 0; i < _myGameField.length; i++) {
+            if (!(_myGameField[i].equals(_EmptyTile))) return false;
+        }
+        return true;
+    }
+
 }
