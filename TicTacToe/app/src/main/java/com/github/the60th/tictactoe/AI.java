@@ -18,9 +18,9 @@ import static com.github.the60th.tictactoe.gameInstance.get_PlayerTile;
  */
 
 public class AI extends Player {
-    private final int[] DEFAULT_FIELD_VALUES = {25,10,25,
-                                                10,25,10,
-                                                25,10,25};
+    private final int[] DEFAULT_FIELD_VALUES = {25, 10, 25,
+            10, 25, 10,
+            25, 10, 25};
     private Difficulty _difficulty;
 
     public AI(String name, PieceType type, boolean myTurn, Difficulty difficulty) {
@@ -204,255 +204,264 @@ public class AI extends Player {
             // 0 1 2
             // 3 4 5
             // 6 7 8
-            for(int i = 0; i<fieldValues.length; i++){
+            for (int i = 0; i < fieldValues.length; i++) {
                 Log.i(debugTag, "FV[0] = " + fieldValues[0] + " at " + i);
                 int _Lvalue;
                 switch (i) {
                     case 0:
                         _Lvalue = fieldValues[0];
-                        if(fieldValues[1] == -1){
+                        if (fieldValues[1] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[2] == -1){
+                            if (fieldValues[2] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
 
-                        if(fieldValues[3] == -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[6] == -1){
+                        if (fieldValues[3] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[6] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[4]== -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[8] == -1){
+                        if (fieldValues[4] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[8] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[0] == -1 || fieldValues[0] == -2){fieldValues[0]=fieldValues[0];}
-                        else fieldValues[0] = _Lvalue;
+                        if (fieldValues[0] == -1 || fieldValues[0] == -2) {
+                            fieldValues[0] = fieldValues[0];
+                        } else fieldValues[0] = _Lvalue;
                         break;
                     case 1:
                         _Lvalue = fieldValues[1];
-                        if(fieldValues[0] == -1){
+                        if (fieldValues[0] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[2] == -1){
+                            if (fieldValues[2] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
 
-                        if(fieldValues[4] == -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[7] == -1){
+                        if (fieldValues[4] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[7] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[2]== -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[0] == -1){
+                        if (fieldValues[2] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[0] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[1] == -1 || fieldValues[1] == -2){fieldValues[1]=fieldValues[1];}
-                        else fieldValues[1] = _Lvalue;
+                        if (fieldValues[1] == -1 || fieldValues[1] == -2) {
+                            fieldValues[1] = fieldValues[1];
+                        } else fieldValues[1] = _Lvalue;
 
                         break;
                     case 2:
                         _Lvalue = fieldValues[2];
-                        if(fieldValues[1] == -1){
+                        if (fieldValues[1] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[0] == -1){
+                            if (fieldValues[0] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[4] == -1){
+                        if (fieldValues[4] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[6] == -1){
+                            if (fieldValues[6] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[5] == -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[8] == -1){
+                        if (fieldValues[5] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[8] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[2] == -1 || fieldValues[2] == -2){fieldValues[2]=fieldValues[2];}
-                        else fieldValues[2] = _Lvalue;
+                        if (fieldValues[2] == -1 || fieldValues[2] == -2) {
+                            fieldValues[2] = fieldValues[2];
+                        } else fieldValues[2] = _Lvalue;
                         break;
                     case 3:
                         _Lvalue = fieldValues[3];
-                        if(fieldValues[0] == -1){
+                        if (fieldValues[0] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[6] == -1){
+                            if (fieldValues[6] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
 
-                        if(fieldValues[4] == -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[5] == -1){
+                        if (fieldValues[4] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[5] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[6]== -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[0] == -1){
+                        if (fieldValues[6] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[0] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[3]== -1 || fieldValues[3] == -2){fieldValues[3]=fieldValues[3];}
-                        else fieldValues[3] = _Lvalue;
+                        if (fieldValues[3] == -1 || fieldValues[3] == -2) {
+                            fieldValues[3] = fieldValues[3];
+                        } else fieldValues[3] = _Lvalue;
                         break;
                     case 4:
                         _Lvalue = fieldValues[4];
-                        if(fieldValues[0] == -1){
+                        if (fieldValues[0] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[8] == -1){
+                            if (fieldValues[8] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[1] == -1){
+                        if (fieldValues[1] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[7] == -1){
+                            if (fieldValues[7] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[2] == -1){
+                        if (fieldValues[2] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[6] == -1){
+                            if (fieldValues[6] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[3] == -1){
+                        if (fieldValues[3] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[5] == -1){
+                            if (fieldValues[5] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[5] == -1){
+                        if (fieldValues[5] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[3] == -1){
+                            if (fieldValues[3] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[6] == -1){
+                        if (fieldValues[6] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[2] == -1){
+                            if (fieldValues[2] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[7] == -1){
+                        if (fieldValues[7] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[1] == -1){
+                            if (fieldValues[1] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[8] == -1){
+                        if (fieldValues[8] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[0] == -1){
+                            if (fieldValues[0] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
                         //still needed
-                        if(fieldValues[4] == -1 || fieldValues[4] == -2){fieldValues[4]=fieldValues[4];}
-                        else fieldValues[4] = _Lvalue;
+                        if (fieldValues[4] == -1 || fieldValues[4] == -2) {
+                            fieldValues[4] = fieldValues[4];
+                        } else fieldValues[4] = _Lvalue;
                         break;
                     case 5:
                         _Lvalue = fieldValues[5];
-                        if(fieldValues[2] == -1){
+                        if (fieldValues[2] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[8] == -1){
+                            if (fieldValues[8] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
 
-                        if(fieldValues[4] == -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[3] == -1){
+                        if (fieldValues[4] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[3] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[8]== -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[2] == -1){
+                        if (fieldValues[8] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[2] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[5] == -1 || fieldValues[5] == -2){fieldValues[5]=fieldValues[5];}
-                        else fieldValues[5] = _Lvalue;
+                        if (fieldValues[5] == -1 || fieldValues[5] == -2) {
+                            fieldValues[5] = fieldValues[5];
+                        } else fieldValues[5] = _Lvalue;
                         break;
                     case 6:
                         _Lvalue = fieldValues[6];
-                        if(fieldValues[3] == -1){
+                        if (fieldValues[3] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[0] == -1){
+                            if (fieldValues[0] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[4] == -1){
+                        if (fieldValues[4] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[2] == -1){
+                            if (fieldValues[2] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[7] == -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[8] == -1){
+                        if (fieldValues[7] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[8] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[6] == -1 || fieldValues[6] == -2){fieldValues[6]=fieldValues[6];}
-                        else fieldValues[6] = _Lvalue;
+                        if (fieldValues[6] == -1 || fieldValues[6] == -2) {
+                            fieldValues[6] = fieldValues[6];
+                        } else fieldValues[6] = _Lvalue;
                         break;
                     case 7:
                         _Lvalue = fieldValues[7];
-                        if(fieldValues[4] == -1){
+                        if (fieldValues[4] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[1] == -1){
+                            if (fieldValues[1] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[6] == -1){
+                        if (fieldValues[6] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[8] == -1){
+                            if (fieldValues[8] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[8] == -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[6] == -1){
+                        if (fieldValues[8] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[6] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[7] == -1 || fieldValues[7] == -2){fieldValues[7]=fieldValues[7];}
-                        else fieldValues[7] = _Lvalue;
+                        if (fieldValues[7] == -1 || fieldValues[7] == -2) {
+                            fieldValues[7] = fieldValues[7];
+                        } else fieldValues[7] = _Lvalue;
                         break;
                     case 8:
                         _Lvalue = fieldValues[8];
-                        if(fieldValues[4] == -1){
+                        if (fieldValues[4] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[0] == -1){
+                            if (fieldValues[0] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[5] == -1){
+                        if (fieldValues[5] == -1) {
                             _Lvalue = _Lvalue + 20;
-                            if(fieldValues[2] == -1){
+                            if (fieldValues[2] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[7] == -1){
-                            _Lvalue = _Lvalue +20;
-                            if(fieldValues[6] == -1){
+                        if (fieldValues[7] == -1) {
+                            _Lvalue = _Lvalue + 20;
+                            if (fieldValues[6] == -1) {
                                 _Lvalue = _Lvalue + 1000;
                             }
                         }
-                        if(fieldValues[8] == -1 || fieldValues[8] == -2){fieldValues[8]=fieldValues[8];}
-                        else fieldValues[8] = _Lvalue;
+                        if (fieldValues[8] == -1 || fieldValues[8] == -2) {
+                            fieldValues[8] = fieldValues[8];
+                        } else fieldValues[8] = _Lvalue;
                         break;
                     default:
-                        Log.i(debugTag,"Invalid calls in AI medium switch case.");
+                        Log.i(debugTag, "Invalid calls in AI medium switch case.");
                 }
 
             }
@@ -460,27 +469,26 @@ public class AI extends Player {
                     fieldValues[0] + " " + fieldValues[1] + " " + fieldValues[2] + System.lineSeparator() +
                     fieldValues[3] + " " + fieldValues[4] + " " + fieldValues[5] + System.lineSeparator() +
                     fieldValues[6] + " " + fieldValues[7] + " " + fieldValues[8] + " ");
-            int[] subIndexies = {-1,-1,-1,
-                                -1,-1,-1,
-                                -1,-1,-1};
-            for(int i = 0; i< fieldValues.length; i++){
+            int[] subIndexies = {-1, -1, -1,
+                    -1, -1, -1,
+                    -1, -1, -1};
+            for (int i = 0; i < fieldValues.length; i++) {
                 //pick which values to use.
-                if(fieldValues[i] > 0 && gameInstance.get_myGameField()[i].equals(get_EmptyTile())){
-                    if(fieldValues[i] > value){
+                if (fieldValues[i] > 0 && gameInstance.get_myGameField()[i].equals(get_EmptyTile())) {
+                    if (fieldValues[i] > value) {
                         value = fieldValues[i];
                         index = i;
-                    }
-                    else if(fieldValues[i] == value){
+                    } else if (fieldValues[i] == value) {
                         subIndexies[i] = i;
                     }
 
                 }
             }
             int maxVal = 0;
-            for(int i =0; i<subIndexies.length; i++){
-                if(subIndexies[i] > maxVal) maxVal = subIndexies[i];
+            for (int i = 0; i < subIndexies.length; i++) {
+                if (subIndexies[i] > maxVal) maxVal = subIndexies[i];
             }
-            if(maxVal >= value) {
+            if (maxVal >= value) {
                 int val = 0;
                 for (int i = 0; i < subIndexies.length; i++) {
                     if (subIndexies[i] > -1) {
@@ -497,10 +505,10 @@ public class AI extends Player {
                     return gameInstance.placeTile(gameInstance.get_myButtons(newIndex), this);
                 }
             }
-            if(index > -1)return gameInstance.placeTile(gameInstance.get_myButtons(index), this);
-            else{
-                Log.i(debugTag,"Failed to find a greater value calling easy AI");
-            return (easyMode(gameInstance));
+            if (index > -1) return gameInstance.placeTile(gameInstance.get_myButtons(index), this);
+            else {
+                Log.i(debugTag, "Failed to find a greater value calling easy AI");
+                return (easyMode(gameInstance));
             }
 
         }
@@ -509,11 +517,551 @@ public class AI extends Player {
     }
 
     private boolean hardMode(gameInstance gameInstance) {
-        return false;
+        int[] fieldValues = transformGameValues(gameInstance.get_myGameField());
+        int index = -1;
+        int value = 0;
+
+        int _Lvalue;
+        for (int i = 0; i < fieldValues.length; i++) {
+            switch (i) {
+                case 0:
+                    _Lvalue = fieldValues[0];
+                    //Check the values of 1 and 2 to get modifiers
+                    //add a else if afterwards to check for -2.
+                    if (fieldValues[1] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[2] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[1] == -2){
+                        if(fieldValues[2] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+                    //Check the values of 3 and 6 to get modifiers
+                    if (fieldValues[3] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[6] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    else if(fieldValues[3] == -2){
+                        if(fieldValues[6] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+                    //Check the values of 4 and 8 to get modifiers
+                    if (fieldValues[4] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[8] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    else if(fieldValues[4] == -2){
+                        if(fieldValues[8] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    //Check if the spot is not already taken.
+                    if (fieldValues[0] == -1 || fieldValues[0] == -2) {
+                        fieldValues[0] = fieldValues[0];
+                    } else fieldValues[0] = _Lvalue;
+                    break;
+                case 1:
+                    _Lvalue = fieldValues[1];
+                    if (fieldValues[0] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[2] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[0] == -2){
+                        if(fieldValues[2] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[4] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[7] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[4] == -2){
+                        if(fieldValues[7] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[2] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[0] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[2] == -2){
+                        if(fieldValues[0] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    //Check if the spot is not already taken.
+                    if (fieldValues[1] == -1 || fieldValues[1] == -2) {
+                        fieldValues[1] = fieldValues[1];
+                    } else fieldValues[1] = _Lvalue;
+
+                    break;
+                case 2:
+                    _Lvalue = fieldValues[2];
+                    if (fieldValues[1] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[0] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[1] == -2){
+                        if(fieldValues[0] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[4] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[6] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[4] == -2){
+                        if(fieldValues[6] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[5] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[8] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[5] == -2){
+                        if(fieldValues[8] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    //Check if the spot is not already taken.
+                    if (fieldValues[2] == -1 || fieldValues[2] == -2) {
+                        fieldValues[2] = fieldValues[2];
+                    } else fieldValues[2] = _Lvalue;
+                    break;
+                case 3:
+                    _Lvalue = fieldValues[3];
+                    if (fieldValues[0] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[6] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[0] == -2){
+                        if(fieldValues[6] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[4] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[5] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[4] == -2){
+                        if(fieldValues[5] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[6] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[0] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[6] == -2){
+                        if(fieldValues[0] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    //Check if the spot is not already taken.
+                    if (fieldValues[3] == -1 || fieldValues[3] == -2) {
+                        fieldValues[3] = fieldValues[3];
+                    } else fieldValues[3] = _Lvalue;
+                    break;
+                case 4:
+                    _Lvalue = fieldValues[4];
+                    if (fieldValues[0] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[8] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[0] == -2){
+                        if(fieldValues[8] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[1] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[7] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[1] == -2){
+                        if(fieldValues[7] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[2] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[6] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[2] == -2){
+                        if(fieldValues[6] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[3] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[5] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[3] == -2){
+                        if(fieldValues[5] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[5] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[3] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[5] == -2){
+                        if(fieldValues[3] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[6] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[2] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[6] == -2){
+                        if(fieldValues[2] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[7] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[1] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[7] == -2){
+                        if(fieldValues[1] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[8] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[0] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[8] == -2){
+                        if(fieldValues[0] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    //Check if the spot is not already taken.
+                    if (fieldValues[4] == -1 || fieldValues[4] == -2) {
+                        fieldValues[4] = fieldValues[4];
+                    } else fieldValues[4] = _Lvalue;
+                    break;
+                case 5:
+                    _Lvalue = fieldValues[5];
+                    if (fieldValues[2] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[8] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[2] == -2){
+                        if(fieldValues[8] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[4] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[3] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[4] == -2){
+                        if(fieldValues[3] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[8] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[2] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[8] == -2){
+                        if(fieldValues[2] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    //Check if the spot is not already taken.
+                    if (fieldValues[5] == -1 || fieldValues[5] == -2) {
+                        fieldValues[5] = fieldValues[5];
+                    } else fieldValues[5] = _Lvalue;
+                    break;
+                case 6:
+                    _Lvalue = fieldValues[6];
+                    if (fieldValues[3] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[0] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[3] == -2){
+                        if(fieldValues[0] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[4] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[2] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[4] == -2){
+                        if(fieldValues[2] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[7] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[8] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[7] == -2){
+                        if(fieldValues[8] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    //Check if the spot is not already taken.
+                    if (fieldValues[6] == -1 || fieldValues[6] == -2) {
+                        fieldValues[6] = fieldValues[6];
+                    } else fieldValues[6] = _Lvalue;
+                    break;
+                case 7:
+                    _Lvalue = fieldValues[7];
+                    if (fieldValues[4] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[1] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[4] == -2){
+                        if(fieldValues[1] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[6] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[8] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[6] == -2){
+                        if(fieldValues[8] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[8] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[6] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[8] == -2){
+                        if(fieldValues[6] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    //Check if the spot is not already taken.
+                    if (fieldValues[7] == -1 || fieldValues[7] == -2) {
+                        fieldValues[7] = fieldValues[7];
+                    } else fieldValues[7] = _Lvalue;
+                    break;
+                case 8:
+                    _Lvalue = fieldValues[8];
+                    if (fieldValues[4] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[0] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[8] == -2){
+                        if(fieldValues[0] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[5] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[2] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[5] == -2){
+                        if(fieldValues[2] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    if (fieldValues[7] == -1) {
+                        _Lvalue = _Lvalue + 20;
+                        if (fieldValues[6] == -1) {
+                            _Lvalue = _Lvalue + 1000;
+                        }
+                    }
+                    //Check if this is a winning spot next turn for the player.
+                    //If so add 500, so it will be picked over anything but a winning play.
+                    else if(fieldValues[7] == -2){
+                        if(fieldValues[6] == -2){
+                            _Lvalue = _Lvalue + 500;
+                        }
+                    }
+
+                    //Check if the spot is not already taken.
+
+                    if (fieldValues[8] == -1 || fieldValues[8] == -2) {
+                        fieldValues[8] = fieldValues[8];
+                    } else fieldValues[8] = _Lvalue;
+                    break;
+                default:
+                    Log.i(debugTag, "Invalid calls in AI medium switch case.");
+
+            }
+        }
+        return mediumMode(gameInstance);
     }
 
     private boolean superhardMode(gameInstance gameInstance) {
-        return false;
+
+        //Relationships:
+        // 0 = 1/3/4
+        // 1= 0/4/2
+        //2 = 1/5
+        //3 = 0/4/6
+        //4 = all
+        //5 = 2/4/8
+        //6 = 3/4/7
+        //7 = 4/6/8
+        //8 = 4/5/7
+        //need to update values.
+        // 0 1 2
+        // 3 4 5
+        // 6 7 8
+
+
+        return hardMode(gameInstance);
     }
 
     //Relationships:
@@ -531,13 +1079,17 @@ public class AI extends Player {
      * A value of -1 is Ai tile.
      * A value of -2 is a player tile.
      */
-    private int[] transformGameValues(String[] field){
+    private int[] transformGameValues(String[] field) {
         int[] values = new int[9];
         //Create values array.
-        for(int i =0;i<field.length;i++){
-            if(field[i].equals(get_AITile())){values[i] =-1;}
-            else if(field[i].equals(get_PlayerTile())){values[i] = -2;}
-            else{values[i] = DEFAULT_FIELD_VALUES[i];}
+        for (int i = 0; i < field.length; i++) {
+            if (field[i].equals(get_AITile())) {
+                values[i] = -1;
+            } else if (field[i].equals(get_PlayerTile())) {
+                values[i] = -2;
+            } else {
+                values[i] = DEFAULT_FIELD_VALUES[i];
+            }
         }
         return values;
     }
