@@ -299,7 +299,7 @@ public class gameForm extends AppCompatActivity {
                 if (x > 5) return player;
                 else return ai;
             case Hard:
-                if (x > 5) return player;
+                if (x > 6) return player;
                 else return ai;
             case Super_Hard:
                 if (x > 7) return player;
