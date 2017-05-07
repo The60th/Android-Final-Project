@@ -305,7 +305,58 @@ public class AI extends Player {
                         else fieldValues[3] = _Lvalue;
                         break;
                     case 4:
+                        _Lvalue = fieldValues[4];
+                        if(fieldValues[0] == -1){
+                            _Lvalue = _Lvalue + 20;
+                            if(fieldValues[8] == -1){
+                                _Lvalue = _Lvalue + 1000;
+                            }
+                        }
+                        if(fieldValues[1] == -1){
+                            _Lvalue = _Lvalue + 20;
+                            if(fieldValues[7] == -1){
+                                _Lvalue = _Lvalue + 1000;
+                            }
+                        }
+                        if(fieldValues[2] == -1){
+                            _Lvalue = _Lvalue + 20;
+                            if(fieldValues[6] == -1){
+                                _Lvalue = _Lvalue + 1000;
+                            }
+                        }
+                        if(fieldValues[3] == -1){
+                            _Lvalue = _Lvalue + 20;
+                            if(fieldValues[5] == -1){
+                                _Lvalue = _Lvalue + 1000;
+                            }
+                        }
+                        if(fieldValues[5] == -1){
+                            _Lvalue = _Lvalue + 20;
+                            if(fieldValues[3] == -1){
+                                _Lvalue = _Lvalue + 1000;
+                            }
+                        }
+                        if(fieldValues[6] == -1){
+                            _Lvalue = _Lvalue + 20;
+                            if(fieldValues[2] == -1){
+                                _Lvalue = _Lvalue + 1000;
+                            }
+                        }
+                        if(fieldValues[7] == -1){
+                            _Lvalue = _Lvalue + 20;
+                            if(fieldValues[1] == -1){
+                                _Lvalue = _Lvalue + 1000;
+                            }
+                        }
+                        if(fieldValues[8] == -1){
+                            _Lvalue = _Lvalue + 20;
+                            if(fieldValues[0] == -1){
+                                _Lvalue = _Lvalue + 1000;
+                            }
+                        }
                         //still needed
+                        if(fieldValues[4] == -1 || fieldValues[4] == -2){fieldValues[4]=fieldValues[4];}
+                        else fieldValues[4] = _Lvalue;
                         break;
                     case 5:
                         _Lvalue = fieldValues[5];
@@ -425,17 +476,26 @@ public class AI extends Player {
 
                 }
             }
-            int val = 0;
+            int maxVal = 0;
             for(int i =0; i<subIndexies.length; i++){
-                if(subIndexies[i] > -1){val = val+1;}
+                if(subIndexies[i] > maxVal) maxVal = subIndexies[i];
             }
-            if(val > 0){
-                Random rand = new Random();
-                int newIndex = subIndexies[rand.nextInt(9)];
-                while (newIndex == -1){
-                     newIndex = subIndexies[rand.nextInt(9)];
+            if(maxVal >= value) {
+                int val = 0;
+                for (int i = 0; i < subIndexies.length; i++) {
+                    if (subIndexies[i] > -1) {
+                        val = val + 1;
+                    }
                 }
-                return gameInstance.placeTile(gameInstance.get_myButtons(newIndex),this);
+                if (val > 0) {
+                    Random rand = new Random();
+                    int newIndex = subIndexies[rand.nextInt(9)];
+                    while (newIndex == -1) {
+                        newIndex = subIndexies[rand.nextInt(9)];
+                    }
+                    Log.i(debugTag, "Randomly picking because of even point scores.");
+                    return gameInstance.placeTile(gameInstance.get_myButtons(newIndex), this);
+                }
             }
             if(index > -1)return gameInstance.placeTile(gameInstance.get_myButtons(index), this);
             else{

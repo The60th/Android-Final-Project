@@ -12,6 +12,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Random;
 
 import static com.github.the60th.tictactoe.ActivitySelectForm.difficultyDataTag;
@@ -33,13 +35,18 @@ public class gameForm extends AppCompatActivity {
         PieceType aiType;
         Random rand = new Random();
         int x = rand.nextInt(2);
+
         if(x == 0){
             playerType = PieceType.X;
             aiType = PieceType.O;
+            TextView tx = (TextView) findViewById(R.id.textView11);
+            tx.setText("Your piece type is X.");
         }
         else if(x == 1){
             playerType = PieceType.O;
             aiType = PieceType.X;
+            TextView tx = (TextView) findViewById(R.id.textView11);
+            tx.setText("Your piece type is O.");
         }
         else{
             Log.i(debugTag,"Unable to randomly select piece type.");
@@ -112,7 +119,7 @@ public class gameForm extends AppCompatActivity {
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-                createMessage("Invalid AI turn call");
+               // createMessage("Invalid AI turn call");
             }
         }
 
@@ -132,7 +139,7 @@ public class gameForm extends AppCompatActivity {
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-                createMessage("Invalid AI turn call");
+               // createMessage("Invalid AI turn call");
             }
         }
     }
@@ -150,7 +157,7 @@ public class gameForm extends AppCompatActivity {
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-                createMessage("Invalid AI turn call");
+              //  createMessage("Invalid AI turn call");
             }
         }
     }
@@ -168,7 +175,7 @@ public class gameForm extends AppCompatActivity {
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-                createMessage("Invalid AI turn call");
+              //  createMessage("Invalid AI turn call");
             }
 
         }
@@ -187,7 +194,7 @@ public class gameForm extends AppCompatActivity {
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-                createMessage("Invalid AI turn call");
+                //createMessage("Invalid AI turn call");
             }
         }
     }
@@ -205,7 +212,7 @@ public class gameForm extends AppCompatActivity {
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-                createMessage("Invalid AI turn call");
+                //createMessage("Invalid AI turn call");
             }
         }
     }
@@ -223,7 +230,7 @@ public class gameForm extends AppCompatActivity {
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-                createMessage("Invalid AI turn call");
+                //createMessage("Invalid AI turn call");
             }
         }
     }
@@ -241,7 +248,7 @@ public class gameForm extends AppCompatActivity {
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-                createMessage("Invalid AI turn call");
+               // createMessage("Invalid AI turn call");
             }
         }
     }
@@ -259,7 +266,7 @@ public class gameForm extends AppCompatActivity {
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-                createMessage("Invalid AI turn call");
+                //createMessage("Invalid AI turn call");
             }
         }
     }
