@@ -12,10 +12,11 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import static com.github.the60th.tictactoe.ActivitySelectForm.difficultyDataTag;
 import static com.github.the60th.tictactoe.gameInstance.EXTRA_MESSAGE;
 
 public class ActivityWinForm extends AppCompatActivity {
-
+    Difficulty myDiff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +37,18 @@ public class ActivityWinForm extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(EXTRA_MESSAGE);
         TextView demoDisplay = (TextView) findViewById(R.id.demoDisplay);
+        myDiff = (Difficulty) intent.getSerializableExtra(difficultyDataTag);
         Log.i(gameInstance.debugTag, "Displaying message: (" + message + ")");
         demoDisplay.setText(message);
     }
 
     public void onClick(View v) {
         Intent intent = new Intent(this,gameForm.class);
+        intent.putExtra(difficultyDataTag,myDiff);
+        startActivity(intent);
+    }
+    public void changeDiff(View v){
+        Intent intent = new Intent(this,ActivitySelectForm.class);
         startActivity(intent);
     }
 }

@@ -8,6 +8,8 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import static com.github.the60th.tictactoe.ActivitySelectForm.difficultyDataTag;
+
 
 /**
  * Created by Justin on 5/2/2017.
@@ -240,22 +242,30 @@ public class gameInstance {
     }
 
     private void playerWins() {
+        Difficulty diffData = _AI.get_difficulty();
         Intent myIntent = new Intent(_Context, ActivityWinForm.class);
         String data = "The player has won!";
+        myIntent.putExtra(difficultyDataTag,diffData);
         myIntent.putExtra(EXTRA_MESSAGE, data);
         _Context.startActivity(myIntent);
 
     }
 
     private void aiWins() {
+        Difficulty diffData = _AI.get_difficulty();
+
         Intent myIntent = new Intent(_Context, ActivityWinForm.class);
         String data = "The AI has won!";
+        myIntent.putExtra(difficultyDataTag,diffData);
         myIntent.putExtra(EXTRA_MESSAGE, data);
         _Context.startActivity(myIntent);
     }
 
     private void draw() {
+        Difficulty diffData = _AI.get_difficulty();
         Intent myIntent = new Intent(_Context, ActivityWinForm.class);
+
+        myIntent.putExtra(difficultyDataTag,diffData);
         String data = "The game was a draw.";
         myIntent.putExtra(EXTRA_MESSAGE, data);
         _Context.startActivity(myIntent);

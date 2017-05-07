@@ -8,21 +8,65 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
 
+import static com.github.the60th.tictactoe.ActivitySelectForm.difficultyDataTag;
+import static com.github.the60th.tictactoe.gameInstance.EXTRA_MESSAGE;
+import static com.github.the60th.tictactoe.gameInstance.debugTag;
+
 public class gameForm extends AppCompatActivity {
     private ImageButton[] myButtons = new ImageButton[9];
     private gameInstance myGame;
-    private Player player = new Player("hi", PieceType.X, true);
-    private AI ai = new AI("hi", PieceType.O, false, Difficulty.Medium);
+    private Player player;
+    private AI ai;
     private int _Index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_form);
+        PieceType playerType;
+        PieceType aiType;
+        Random rand = new Random();
+        int x = rand.nextInt(2);
+        if(x == 0){
+            playerType = PieceType.X;
+            aiType = PieceType.O;
+        }
+        else if(x == 1){
+            playerType = PieceType.O;
+            aiType = PieceType.X;
+        }
+        else{
+            Log.i(debugTag,"Unable to randomly select piece type.");
+            playerType = PieceType.X;
+            aiType = PieceType.O;
+        }
+
+        Intent intent = getIntent();
+        Difficulty data = (Difficulty) intent.getSerializableExtra(difficultyDataTag);
+        switch (data) {
+            case Easy:
+                ai = new AI("AI", aiType, false, Difficulty.Easy);
+                break;
+            case Medium:
+                ai = new AI("AI", aiType, false, Difficulty.Medium);
+                break;
+            case Hard:
+                ai = new AI("AI", aiType, false, Difficulty.Hard);
+                break;
+            case Super_Hard:
+                ai = new AI("AI", aiType, false, Difficulty.Super_Hard);
+                break;
+            default:
+                ai = new AI("AI", aiType, false, Difficulty.Medium);
+                break;
+        }
+        player = new Player("Player", playerType, true);
 
         myButtons[0] = (ImageButton) findViewById(R.id.buttonTop1);
         myButtons[1] = (ImageButton) findViewById(R.id.buttonTop2);
@@ -38,16 +82,21 @@ public class gameForm extends AppCompatActivity {
 
         myGame = new gameInstance(myButtons, player, ai, this);
         if (whoGoesFirst() == ai) {
+            createMessage("You are " + player.get_PieceType().toString().toUpperCase() + "s, and you are going second."
+                    + System.lineSeparator() + "Good luck!");
             player.set_MyTurn(false);
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-
+                Log.i(debugTag,"Unable to randomly select first player.");
                 createMessage("Invalid AI turn call");
             }
         } else {
+            createMessage("You are " + player.get_PieceType().toString().toUpperCase() + "s, and you are going first."
+                    + System.lineSeparator() + "Good luck!");
         }
+
     }
 
     public void clickTopLeft(View v) {
@@ -58,7 +107,7 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Top left was clicked");
+          //  createMessage("Top left was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
@@ -78,7 +127,7 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!myGame.placeTile(myButtons[_Index], player)) return;
-            createMessage("Top mid was clicked");
+          //  createMessage("Top mid was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
@@ -96,7 +145,7 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Top right was clicked");
+           // createMessage("Top right was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
@@ -114,7 +163,7 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Mid left was clicked");
+           // createMessage("Mid left was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
@@ -133,7 +182,7 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Mid mid was clicked");
+            //createMessage("Mid mid was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
@@ -151,7 +200,7 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Mid right was clicked");
+           // createMessage("Mid right was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
@@ -169,7 +218,7 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Bot left was clicked");
+            //createMessage("Bot left was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
@@ -187,7 +236,7 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Bot mid was clicked");
+           // createMessage("Bot mid was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
@@ -205,7 +254,7 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-            createMessage("Bot right was clicked");
+            //createMessage("Bot right was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
