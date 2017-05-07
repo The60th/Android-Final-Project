@@ -174,7 +174,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView12" />
+            android:id="@+id/textView12"
+            android:text="The Difficulty is Medium"
+            android:paddingLeft="100dp" />
 
         <TextView
             android:text="_________________________________________________________"

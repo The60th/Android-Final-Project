@@ -20,17 +20,6 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/demoDisplay" />
 
-    <Button
-        android:text="Play again!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:onClick="onClick"
-        android:layout_marginBottom="138dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="19dp" />
-
     <TextView
         android:text="Would you like to play again? Or change the AI difficulty?"
         android:layout_width="wrap_content"
@@ -45,6 +34,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/button5"
         android:onClick="changeDiff"
+        android:layout_alignBaseline="@+id/button"
         android:layout_alignBottom="@+id/button"
-        android:layout_alignParentStart="true" />
+        android:layout_alignEnd="@+id/textView4"
+        android:layout_marginEnd="12dp" />
+
+    <Button
+        android:text="Play again!"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:onClick="onClick"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/textView4"
+        android:layout_width="125dp" />
 </RelativeLayout>

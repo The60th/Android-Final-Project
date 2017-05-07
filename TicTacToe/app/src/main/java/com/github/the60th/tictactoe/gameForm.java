@@ -36,23 +36,22 @@ public class gameForm extends AppCompatActivity {
         Random rand = new Random();
         int x = rand.nextInt(2);
 
-        if(x == 0){
+        if (x == 0) {
             playerType = PieceType.X;
             aiType = PieceType.O;
             TextView tx = (TextView) findViewById(R.id.textView11);
             tx.setText("Your piece type is X.");
-        }
-        else if(x == 1){
+        } else if (x == 1) {
             playerType = PieceType.O;
             aiType = PieceType.X;
             TextView tx = (TextView) findViewById(R.id.textView11);
             tx.setText("Your piece type is O.");
-        }
-        else{
-            Log.i(debugTag,"Unable to randomly select piece type.");
+        } else {
+            Log.i(debugTag, "Unable to randomly select piece type.");
             playerType = PieceType.X;
             aiType = PieceType.O;
         }
+
 
         Intent intent = getIntent();
         Difficulty data = (Difficulty) intent.getSerializableExtra(difficultyDataTag);
@@ -73,6 +72,10 @@ public class gameForm extends AppCompatActivity {
                 ai = new AI("AI", aiType, false, Difficulty.Medium);
                 break;
         }
+
+        TextView tx = (TextView) findViewById(R.id.textView12);
+        tx.setText("The Difficulty is on " + ai.get_difficulty().toString());
+
         player = new Player("Player", playerType, true);
 
         myButtons[0] = (ImageButton) findViewById(R.id.buttonTop1);
@@ -96,7 +99,7 @@ public class gameForm extends AppCompatActivity {
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-                Log.i(debugTag,"Unable to randomly select first player.");
+                Log.i(debugTag, "Unable to randomly select first player.");
                 createMessage("Invalid AI turn call");
             }
         } else {
@@ -114,12 +117,12 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-          //  createMessage("Top left was clicked");
+            //  createMessage("Top left was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-               // createMessage("Invalid AI turn call");
+                // createMessage("Invalid AI turn call");
             }
         }
 
@@ -134,12 +137,12 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!myGame.placeTile(myButtons[_Index], player)) return;
-          //  createMessage("Top mid was clicked");
+            //  createMessage("Top mid was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-               // createMessage("Invalid AI turn call");
+                // createMessage("Invalid AI turn call");
             }
         }
     }
@@ -152,12 +155,12 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-           // createMessage("Top right was clicked");
+            // createMessage("Top right was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-              //  createMessage("Invalid AI turn call");
+                //  createMessage("Invalid AI turn call");
             }
         }
     }
@@ -170,12 +173,12 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-           // createMessage("Mid left was clicked");
+            // createMessage("Mid left was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-              //  createMessage("Invalid AI turn call");
+                //  createMessage("Invalid AI turn call");
             }
 
         }
@@ -207,7 +210,7 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-           // createMessage("Mid right was clicked");
+            // createMessage("Mid right was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
@@ -243,12 +246,12 @@ public class gameForm extends AppCompatActivity {
         }
         if (checkTurn(player, v)) {
             if (!(myGame.placeTile(myButtons[_Index], player))) return;
-           // createMessage("Bot mid was clicked");
+            // createMessage("Bot mid was clicked");
             ai.set_MyTurn(true);
             if (ai.playTurn(myGame)) {
                 player.set_MyTurn(true);
             } else {
-               // createMessage("Invalid AI turn call");
+                // createMessage("Invalid AI turn call");
             }
         }
     }
