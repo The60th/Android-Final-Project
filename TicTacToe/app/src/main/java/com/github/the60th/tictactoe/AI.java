@@ -1091,10 +1091,15 @@ public class AI extends Player {
 
                 }
             }
+            Log.i(debugTag,"SubIndexies." + System.lineSeparator() +
+                    subIndexies[0] + " " + subIndexies[1] + " " + subIndexies[2] + System.lineSeparator() +
+                    subIndexies[3] + " " + subIndexies[4] + " " + subIndexies[5] + System.lineSeparator() +
+                    subIndexies[6] + " " + subIndexies[7] + " " + subIndexies[8] + " ");
             int maxVal = 0;
             for (int i = 0; i < subIndexies.length; i++) {
-                if (subIndexies[i] > maxVal) maxVal = subIndexies[i];
+                if (subIndexies[i] > maxVal) maxVal = fieldValues[i];
             }
+            Log.i(debugTag,"Max value:" + maxVal);
             if (maxVal >= value) {
                 int val = 0;
                 for (int i = 0; i < subIndexies.length; i++) {

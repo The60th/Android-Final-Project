@@ -24,7 +24,7 @@ public class gameInstance {
     //  4 9 2
     //sum of a colume is 15.
     public static final String EXTRA_MESSAGE = "myDisplayData";
-    public boolean debugMode = true;
+    public boolean debugMode = false;
 
     public static String debugTag = "<:My Debug Data:>";
     private int[] magicSquare = {8, 1, 6,
