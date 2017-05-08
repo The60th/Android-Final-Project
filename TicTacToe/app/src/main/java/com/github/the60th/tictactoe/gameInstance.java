@@ -18,11 +18,6 @@ import static com.github.the60th.tictactoe.ActivitySelectForm.difficultyDataTag;
 
 public class gameInstance {
     //Class variables.
-    //3by3 magic square:
-    //  8 1 6
-    //  3 5 7
-    //  4 9 2
-    //sum of a colume is 15.
     public static final String EXTRA_MESSAGE = "myDisplayData";
     public boolean debugMode = false;
 
@@ -60,15 +55,18 @@ public class gameInstance {
         return _myGameBoolean;
     }
 
+    //Getters/Setters and variables.
     public void set_myGameBoolean(boolean[] _myGameBoolean) {
         this._myGameBoolean = _myGameBoolean;
     }
 
+    //Used to track if a tile has been placed on.
     private boolean[] _myGameBoolean = {
             true, true, true,
             true, true, true,
             true, true, true
     };
+    //Used to track whats in the game field.
     private String[] _myGameField = {
             _EmptyTile, _EmptyTile, _EmptyTile,
             _EmptyTile, _EmptyTile, _EmptyTile,
@@ -114,8 +112,10 @@ public class gameInstance {
         _Context = context;
     }
 
+    //Called when a user or the computer wishes to place a tile.
     public boolean placeTile(ImageButton clicked, Player whoClicked) {
         String tile;
+        //Determine who called the function and set their tile to the correct instance.
         if (whoClicked instanceof AI) {
             //Ai click methods.
             tile = _AITile;
@@ -130,11 +130,14 @@ public class gameInstance {
         // }
 
         int _index;
+        //For each button in the master list of buttons, compare it vs the button that was clicked
+        //till we find which one that matches.
         for (int i = 0; i < _myButtons.length; i++) {
             if (_myButtons[i].getId() == clicked.getId()) {
                 if (debugMode) Log.i(debugTag, "my index = " + i);
                 _index = i;
                 _myGameField[_index] = tile;
+                //Once the tile has been found called the user instance of placeTile to place it.
                 whoClicked.placeTile(_myButtons[_index]);
                 _myGameBoolean[_index] = false;
                 if (debugMode) Log.i(debugTag, "my game field: " + System.lineSeparator() +
@@ -143,37 +146,41 @@ public class gameInstance {
                         _myGameField[6] + " " + _myGameField[7] + " " + _myGameField[8] + " "
 
                 );
-
-                //Have to update the display!
-                //This should call some sort of win display method rather then handle winning right here.
+                //Check if anyone has won yet.
+                //checkWinner can return null so it should always be safe checked.
                 whoWins whoWon = checkWinner(whoClicked);
                 if (whoWon != null) {
                     //Someone has won.
                     if (whoWon == whoWins.AI) {
+                        //When the AI has won trigger the AI winning function.
                         if (debugMode) Log.i(debugTag, "AI has won!");
                         aiWins();
                         return false;
                     } else if (whoWon == whoWins.Player) {
+                        //When the player has won trigger the player winning function.
                         if (debugMode) Log.i(debugTag, "Player has won!");
                         playerWins();
                         return false;
                     } else {
+                        //Trigger the draw function
                         if (debugMode) Log.i(debugTag, "The game has come to a draw");
                         draw();
                         return false;
                     }
 
                 } else {
-                    //Check winner was null so error or draw.
+                    //Check winner was null so no win states.
                 }
                 //^^
-
+                //break out off the forloop now because the conditions have all been meet.
                 break;
             }
         }
+        //return true.
         return true;
     }
 
+    //Enum to track the return types of checkWinner
     private enum whoWins {Player, AI, Draw}
 
     /**
@@ -194,6 +201,7 @@ public class gameInstance {
             );
         String tile;
         whoWins returnType;
+        //See what the caller is an instance of and cast the check type to their type.
         if (player instanceof AI) {
             tile = _AITile;
             returnType = whoWins.AI;
@@ -206,6 +214,8 @@ public class gameInstance {
         //          "Instance of player is null."
         //  );
         // }
+
+        //Here we will check each win condition on the board, and return the winning player if any is meet.
 
         if (debugMode) Log.i(debugTag, "My tile data: " + tile);
         //Check vert
@@ -231,16 +241,19 @@ public class gameInstance {
             return returnType;
         }
         //draw
+        //No winner was found so it must of been a draw if all tiles are full.
         else if (!(_myGameField[0].equals(_EmptyTile)) && !(_myGameField[1].equals(_EmptyTile)) && !(_myGameField[2].equals(_EmptyTile)) &&
                 !(_myGameField[3].equals(_EmptyTile)) && !(_myGameField[4].equals(_EmptyTile)) && !(_myGameField[5].equals(_EmptyTile)) &&
                 !(_myGameField[6].equals(_EmptyTile)) && !(_myGameField[7].equals(_EmptyTile)) && !(_myGameField[8].equals(_EmptyTile))) {
             return whoWins.Draw;
         } else {
+            //No winner was found so return null.
             return null;
         }
 
     }
 
+    //Call when the player wins to load the end game activity and pass some display data to it.
     private void playerWins() {
         Difficulty diffData = _AI.get_difficulty();
         Intent myIntent = new Intent(_Context, ActivityWinForm.class);
@@ -250,6 +263,7 @@ public class gameInstance {
         _Context.startActivity(myIntent);
 
     }
+    //Call when the computer wins to load the end game activity and pass some display data to it.
 
     private void aiWins() {
         Difficulty diffData = _AI.get_difficulty();
@@ -260,6 +274,7 @@ public class gameInstance {
         myIntent.putExtra(EXTRA_MESSAGE, data);
         _Context.startActivity(myIntent);
     }
+    //Call when a draw happens to load the end game activity and pass some display data to it.
 
     private void draw() {
         Difficulty diffData = _AI.get_difficulty();
@@ -271,6 +286,7 @@ public class gameInstance {
         _Context.startActivity(myIntent);
     }
 
+    //Used to check if its the first turn by making sure none of the tiles already have data saved to them.
     public boolean isFirstTurn() {
         for (int i = 0; i < _myGameField.length; i++) {
             if (!(_myGameField[i].equals(_EmptyTile))) return false;

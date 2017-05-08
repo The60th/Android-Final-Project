@@ -33,9 +33,11 @@ public class gameForm extends AppCompatActivity {
         setContentView(R.layout.activity_game_form);
         PieceType playerType;
         PieceType aiType;
+
+        //Create a new random value then use it to select which piece type the player and the
+        //computer get.
         Random rand = new Random();
         int x = rand.nextInt(2);
-
         if (x == 0) {
             playerType = PieceType.X;
             aiType = PieceType.O;
@@ -52,7 +54,8 @@ public class gameForm extends AppCompatActivity {
             aiType = PieceType.O;
         }
 
-
+        //Get the intent that launched this form and get the difficulty level from the shared data,
+        //after wards update the display, and create the ai and player instances.
         Intent intent = getIntent();
         Difficulty data = (Difficulty) intent.getSerializableExtra(difficultyDataTag);
         switch (data) {
@@ -75,9 +78,9 @@ public class gameForm extends AppCompatActivity {
 
         TextView tx = (TextView) findViewById(R.id.textView12);
         tx.setText("The Difficulty is on " + ai.get_difficulty().toString());
-
         player = new Player("Player", playerType, true);
 
+        //Save all the buttons to a array for easy use.
         myButtons[0] = (ImageButton) findViewById(R.id.buttonTop1);
         myButtons[1] = (ImageButton) findViewById(R.id.buttonTop2);
         myButtons[2] = (ImageButton) findViewById(R.id.buttonTop3);
@@ -90,7 +93,11 @@ public class gameForm extends AppCompatActivity {
         myButtons[7] = (ImageButton) findViewById(R.id.buttonBottom2);
         myButtons[8] = (ImageButton) findViewById(R.id.buttonBottom3);
 
+        //Create an instance of the game.
         myGame = new gameInstance(myButtons, player, ai, this);
+
+        //Check who is going first with the method whoGoesFirst that return an player or ai object,
+        //then display a toast message to the user, giving them info about the game.
         if (whoGoesFirst() == ai) {
             createMessage("You are " + player.get_PieceType().toString().toUpperCase() + "s, and you are going second."
                     + System.lineSeparator() + "Good luck!");
@@ -108,6 +115,8 @@ public class gameForm extends AppCompatActivity {
         }
 
     }
+
+    //Below is sets of methods to handle all the diffrent image button clicks.
 
     public void clickTopLeft(View v) {
         _Index = 0;
@@ -274,11 +283,12 @@ public class gameForm extends AppCompatActivity {
         }
     }
 
-
+    //Create a toast message based off of a based in string.
     private void createMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    //Check if it is currently the players turn -- should be moved to a class based method.
     private boolean checkTurn(Player player, View v) {
         if (player.is_MyTurn()) {
             player.set_MyTurn(false);
@@ -289,6 +299,7 @@ public class gameForm extends AppCompatActivity {
         }
     }
 
+    //Random return who goes first, different difficulties have different modifiers for who goes first.
     private Player whoGoesFirst() {
         Random rand = new Random();
         int x = rand.nextInt(10) + 1;

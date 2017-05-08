@@ -9,30 +9,28 @@ import android.widget.ImageButton;
 
 public class Player {
     private String _Name;
-
-
-
     private PieceType _PieceType;
     private boolean _MyTurn;
-public Player(String name, PieceType type,boolean myTurn){
-    _Name = name;
-    _PieceType = type;
-    _MyTurn = myTurn;
-}
-    public void placeTile(ImageButton tile){
-        if(_PieceType == PieceType.X){
+
+    //Default constructor.
+    public Player(String name, PieceType type, boolean myTurn) {
+        _Name = name;
+        _PieceType = type;
+        _MyTurn = myTurn;
+    }
+
+    //Method will place the players piece at the given button.
+    public void placeTile(ImageButton tile) {
+        if (_PieceType == PieceType.X) {
             tile.setImageResource(R.drawable.largeximage);
-        }
-        else if(_PieceType == PieceType.O){
+        } else if (_PieceType == PieceType.O) {
             tile.setImageResource(R.drawable.largeoimage);
-        }
-        else{
-           //?
+        } else {
+            //?
         }
     }
 
-
-
+    //getters/setters.
     public String get_Name() {
         return _Name;
     }
@@ -44,6 +42,7 @@ public Player(String name, PieceType type,boolean myTurn){
     public void set_MyTurn(boolean _MyTurn) {
         this._MyTurn = _MyTurn;
     }
+
     public PieceType get_PieceType() {
         return _PieceType;
     }
